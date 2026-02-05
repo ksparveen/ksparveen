@@ -39,3 +39,5 @@
 ---
 **⚡ GitHub Stats:**
 [![Parveen Kashyap's GitHub stats](https://github-readme-stats.vercel.app/api/pin/?username=ksparveen&repo=&theme=radical)](https://github.com/ksparveen)
+
+<img src="https://raw.githubusercontent.com/ksparveen/ksparveen/output/snake.svg" width = 1500 alt="Snake animation" />
