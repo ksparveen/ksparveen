@@ -80,94 +80,93 @@
       letter-spacing: 0.2px;
     }
 
-    /* Timeline dot motion (UPDATED: no gaps) */
-    #dot { animation: k_dot 70s linear; }
+    /* Timeline dot motion (SPEEDED UP: 14s total) */
+    #dot { animation: k_dot 14s linear; }
     @keyframes k_dot {
-      0%, 5.714% { transform: translateY(0px); }             /* Name */
-      5.714%, 14.285% { transform: translateY(32px); }       /* Tagline */
-      14.285%, 28.572% { transform: translateY(86px); }      /* What I Do */
-      28.572%, 42.859% { transform: translateY(216px); }     /* My Background */
-      42.859%, 57.146% { transform: translateY(346px); }     /* My Interests */
-      57.146%, 71.433% { transform: translateY(476px); }     /* How I Work */
-      71.433%, 100% { transform: translateY(476px); }        /* Hold final */
+      0%, 7% { transform: translateY(0px); }             /* Name */
+      7%, 21% { transform: translateY(32px); }           /* Tagline */
+      21%, 42% { transform: translateY(86px); }          /* What I Do */
+      42%, 63% { transform: translateY(216px); }         /* My Background */
+      63%, 84% { transform: translateY(346px); }         /* My Interests */
+      84%, 100% { transform: translateY(476px); }        /* How I Work */
     }
 
-    /* Completed dots appear behind (UPDATED: no gaps) */
-    #done1 { animation: k_done1 70s linear; }
-    #done2 { animation: k_done2 70s linear; }
-    #done3 { animation: k_done3 70s linear; }
-    #done4 { animation: k_done4 70s linear; }
-    #done5 { animation: k_done5 70s linear; }
+    /* Completed dots appear behind (SPEEDED UP) */
+    #done1 { animation: k_done1 14s linear; }
+    #done2 { animation: k_done2 14s linear; }
+    #done3 { animation: k_done3 14s linear; }
+    #done4 { animation: k_done4 14s linear; }
+    #done5 { animation: k_done5 14s linear; }
 
-    @keyframes k_done1 { 0%, 5.714% { opacity:0 } 5.715%, 100% { opacity:1 } }
-    @keyframes k_done2 { 0%, 14.285% { opacity:0 } 14.286%, 100% { opacity:1 } }
-    @keyframes k_done3 { 0%, 28.572% { opacity:0 } 28.573%, 100% { opacity:1 } }
-    @keyframes k_done4 { 0%, 42.859% { opacity:0 } 42.860%, 100% { opacity:1 } }
-    @keyframes k_done5 { 0%, 57.146% { opacity:0 } 57.147%, 100% { opacity:1 } }
+    @keyframes k_done1 { 0%, 7% { opacity:0 } 7.1%, 100% { opacity:1 } }
+    @keyframes k_done2 { 0%, 21% { opacity:0 } 21.1%, 100% { opacity:1 } }
+    @keyframes k_done3 { 0%, 42% { opacity:0 } 42.1%, 100% { opacity:1 } }
+    @keyframes k_done4 { 0%, 63% { opacity:0 } 63.1%, 100% { opacity:1 } }
+    @keyframes k_done5 { 0%, 84% { opacity:0 } 84.1%, 100% { opacity:1 } }
 
-    /* ONLY NAME keeps moving forever */
-    #nameFade { animation: nameFade 70s linear infinite; }
+    /* ONLY NAME keeps moving forever (adjusted timing) */
+    #nameFade { animation: nameFade 14s linear infinite; }
     @keyframes nameFade {
-      0%, 92% { opacity: 1; }
-      95.2% { opacity: 0; }
+      0%, 85% { opacity: 1; }
+      90% { opacity: 0; }
       100% { opacity: 0; }
     }
 
-    #wipeBar { animation: wipeMove 10s ease-in-out infinite; }
+    #wipeBar { animation: wipeMove 2s ease-in-out infinite; }
     @keyframes wipeMove {
       0%   { transform: translateX(-320px); }
       50%  { transform: translateX(220px); }
-      70%  { transform: translateX(220px); } /* hold */
+      70%  { transform: translateX(220px); }
       100% { transform: translateX(1400px); }
     }
 
-    /* Typing (same steps, UPDATED timings to remove gaps) */
-    #r_name     { animation: k_name 70s linear; animation-timing-function: steps(70, end); }
-    #r_tag      { animation: k_tag 70s linear;  animation-timing-function: steps(110, end); }
+    /* Typing (ALL SPEEDED UP 5x faster, name timing unchanged) */
+    #r_name     { animation: k_name 14s linear; animation-timing-function: steps(70, end); }
+    #r_tag      { animation: k_tag 14s linear;  animation-timing-function: steps(110, end); }
 
-    #r_h_what   { animation: k_h_what 70s linear; animation-timing-function: steps(90, end); }
-    #r_h_bg     { animation: k_h_bg 70s linear;   animation-timing-function: steps(90, end); }
-    #r_h_int    { animation: k_h_int 70s linear;  animation-timing-function: steps(90, end); }
-    #r_h_work   { animation: k_h_work 70s linear; animation-timing-function: steps(90, end); }
+    #r_h_what   { animation: k_h_what 14s linear; animation-timing-function: steps(90, end); }
+    #r_h_bg     { animation: k_h_bg 14s linear;   animation-timing-function: steps(90, end); }
+    #r_h_int    { animation: k_h_int 14s linear;  animation-timing-function: steps(90, end); }
+    #r_h_work   { animation: k_h_work 14s linear; animation-timing-function: steps(90, end); }
 
-    #r_b_what_1 { animation: k_b_what_1 70s linear; animation-timing-function: steps(110, end); }
-    #r_b_what_2 { animation: k_b_what_2 70s linear; animation-timing-function: steps(110, end); }
-    #r_b_what_3 { animation: k_b_what_3 70s linear; animation-timing-function: steps(110, end); }
+    #r_b_what_1 { animation: k_b_what_1 14s linear; animation-timing-function: steps(110, end); }
+    #r_b_what_2 { animation: k_b_what_2 14s linear; animation-timing-function: steps(110, end); }
+    #r_b_what_3 { animation: k_b_what_3 14s linear; animation-timing-function: steps(110, end); }
 
-    #r_b_bg_1   { animation: k_b_bg_1 70s linear; animation-timing-function: steps(110, end); }
-    #r_b_bg_2   { animation: k_b_bg_2 70s linear; animation-timing-function: steps(110, end); }
-    #r_b_bg_3   { animation: k_b_bg_3 70s linear; animation-timing-function: steps(110, end); }
+    #r_b_bg_1   { animation: k_b_bg_1 14s linear; animation-timing-function: steps(110, end); }
+    #r_b_bg_2   { animation: k_b_bg_2 14s linear; animation-timing-function: steps(110, end); }
+    #r_b_bg_3   { animation: k_b_bg_3 14s linear; animation-timing-function: steps(110, end); }
 
-    #r_b_int_1  { animation: k_b_int_1 70s linear; animation-timing-function: steps(110, end); }
-    #r_b_int_2  { animation: k_b_int_2 70s linear; animation-timing-function: steps(110, end); }
-    #r_b_int_3  { animation: k_b_int_3 70s linear; animation-timing-function: steps(110, end); }
+    #r_b_int_1  { animation: k_b_int_1 14s linear; animation-timing-function: steps(110, end); }
+    #r_b_int_2  { animation: k_b_int_2 14s linear; animation-timing-function: steps(110, end); }
+    #r_b_int_3  { animation: k_b_int_3 14s linear; animation-timing-function: steps(110, end); }
 
-    #r_b_work_1 { animation: k_b_work_1 70s linear; animation-timing-function: steps(110, end); }
-    #r_b_work_2 { animation: k_b_work_2 70s linear; animation-timing-function: steps(110, end); }
-    #r_b_work_3 { animation: k_b_work_3 70s linear; animation-timing-function: steps(110, end); }
+    #r_b_work_1 { animation: k_b_work_1 14s linear; animation-timing-function: steps(110, end); }
+    #r_b_work_2 { animation: k_b_work_2 14s linear; animation-timing-function: steps(110, end); }
+    #r_b_work_3 { animation: k_b_work_3 14s linear; animation-timing-function: steps(110, end); }
 
-    @keyframes k_name { 0%, 0% { width:0 } 5.714% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
-    @keyframes k_tag  { 0%, 5.714% { width:0 } 14.285% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
+    @keyframes k_name { 0%, 0% { width:0 } 5% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
+    @keyframes k_tag  { 0%, 7% { width:0 } 21% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
 
-    @keyframes k_h_what { 0%, 14.285% { width:0 } 17.714% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
-    @keyframes k_b_what_1 { 0%, 15.714% { width:0 } 20.000% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
-    @keyframes k_b_what_2 { 0%, 20.000% { width:0 } 24.286% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
-    @keyframes k_b_what_3 { 0%, 24.286% { width:0 } 28.572% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
+    @keyframes k_h_what { 0%, 21% { width:0 } 25% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
+    @keyframes k_b_what_1 { 0%, 23% { width:0 } 28% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
+    @keyframes k_b_what_2 { 0%, 28% { width:0 } 33% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
+    @keyframes k_b_what_3 { 0%, 33% { width:0 } 42% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
 
-    @keyframes k_h_bg { 0%, 28.572% { width:0 } 32.001% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
-    @keyframes k_b_bg_1 { 0%, 30.001% { width:0 } 34.287% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
-    @keyframes k_b_bg_2 { 0%, 34.287% { width:0 } 38.573% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
-    @keyframes k_b_bg_3 { 0%, 38.573% { width:0 } 42.859% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
+    @keyframes k_h_bg { 0%, 42% { width:0 } 46% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
+    @keyframes k_b_bg_1 { 0%, 44% { width:0 } 49% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
+    @keyframes k_b_bg_2 { 0%, 49% { width:0 } 54% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
+    @keyframes k_b_bg_3 { 0%, 54% { width:0 } 63% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
 
-    @keyframes k_h_int { 0%, 42.859% { width:0 } 46.288% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
-    @keyframes k_b_int_1 { 0%, 44.288% { width:0 } 48.574% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
-    @keyframes k_b_int_2 { 0%, 48.574% { width:0 } 52.860% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
-    @keyframes k_b_int_3 { 0%, 52.860% { width:0 } 57.146% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
+    @keyframes k_h_int { 0%, 63% { width:0 } 67% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
+    @keyframes k_b_int_1 { 0%, 65% { width:0 } 70% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
+    @keyframes k_b_int_2 { 0%, 70% { width:0 } 75% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
+    @keyframes k_b_int_3 { 0%, 75% { width:0 } 84% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
 
-    @keyframes k_h_work { 0%, 57.146% { width:0 } 60.575% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
-    @keyframes k_b_work_1 { 0%, 58.575% { width:0 } 62.861% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
-    @keyframes k_b_work_2 { 0%, 62.861% { width:0 } 67.147% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
-    @keyframes k_b_work_3 { 0%, 67.147% { width:0 } 71.433% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
+    @keyframes k_h_work { 0%, 84% { width:0 } 88% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
+    @keyframes k_b_work_1 { 0%, 86% { width:0 } 90% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
+    @keyframes k_b_work_2 { 0%, 90% { width:0 } 94% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
+    @keyframes k_b_work_3 { 0%, 94% { width:0 } 100% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
 
     /* ===== keep everything visible after reveal (freeze) ===== */
     #dot,
@@ -232,7 +231,7 @@
 
   <!-- How I Work -->
   <g class="mono" clip-path="url(#cp_h_work)"><text x="24" y="530" class="h">How I Work</text></g>
-  <g class="mono" clip-path="url(#cp_b_work_1)"><text x="36" y="558" class="b">• Code that’s practical, readable, and impactful</text></g>
+  <g class="mono" clip-path="url(#cp_b_work_1)"><text x="36" y="558" class="b">• Code that's practical, readable, and impactful</text></g>
   <g class="mono" clip-path="url(#cp_b_work_2)"><text x="36" y="582" class="b">• From idea to deployment, end-to-end</text></g>
   <g class="mono" clip-path="url(#cp_b_work_3)"><text x="36" y="606" class="b">• Always learning, always experimenting</text></g>
 
