@@ -1,0 +1,239 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="900" height="620" viewBox="0 0 900 620"
+     style="overflow:visible" overflow="visible"
+     role="img" aria-label="Intro">
+
+  <defs>
+    <!-- Grain/noise (very subtle) -->
+    <filter id="grain" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="matrix"
+        values="1 0 0 0 0
+                0 1 0 0 0
+                0 0 1 0 0
+                0 0 0 0.10 0"/>
+    </filter>
+
+    <!-- Subtle scanlines -->
+    <pattern id="scan" patternUnits="userSpaceOnUse" width="6" height="6">
+      <rect width="6" height="6" fill="transparent"/>
+      <rect y="0" width="6" height="1" fill="#000000" opacity="0.22"/>
+    </pattern>
+
+    <!-- Tiny glow for readability -->
+    <filter id="dualGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="0" stdDeviation="1.2" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+
+    <!-- MOVIE WIPE MASK (hides part of name) -->
+    <mask id="mask_name_wipe" maskUnits="userSpaceOnUse">
+      <rect x="0" y="0" width="2000" height="620" fill="white"/>
+      <rect id="wipeBar" x="-320" y="14" width="300" height="62" fill="black"/>
+    </mask>
+
+    <!-- Typewriter reveal clipPaths (units + correct y/height so text never cuts) -->
+    <clipPath id="cp_name" clipPathUnits="userSpaceOnUse"><rect id="r_name" x="24" y="10" width="0" height="70"/></clipPath>
+    <clipPath id="cp_tag"  clipPathUnits="userSpaceOnUse"><rect id="r_tag"  x="24" y="66" width="0" height="32"/></clipPath>
+
+    <clipPath id="cp_h_what" clipPathUnits="userSpaceOnUse"><rect id="r_h_what" x="24" y="114" width="0" height="34"/></clipPath>
+    <clipPath id="cp_b_what_1" clipPathUnits="userSpaceOnUse"><rect id="r_b_what_1" x="36" y="148" width="0" height="28"/></clipPath>
+    <clipPath id="cp_b_what_2" clipPathUnits="userSpaceOnUse"><rect id="r_b_what_2" x="36" y="172" width="0" height="28"/></clipPath>
+    <clipPath id="cp_b_what_3" clipPathUnits="userSpaceOnUse"><rect id="r_b_what_3" x="36" y="196" width="0" height="28"/></clipPath>
+
+    <clipPath id="cp_h_bg" clipPathUnits="userSpaceOnUse"><rect id="r_h_bg" x="24" y="244" width="0" height="34"/></clipPath>
+    <clipPath id="cp_b_bg_1" clipPathUnits="userSpaceOnUse"><rect id="r_b_bg_1" x="36" y="278" width="0" height="28"/></clipPath>
+    <clipPath id="cp_b_bg_2" clipPathUnits="userSpaceOnUse"><rect id="r_b_bg_2" x="36" y="302" width="0" height="28"/></clipPath>
+    <clipPath id="cp_b_bg_3" clipPathUnits="userSpaceOnUse"><rect id="r_b_bg_3" x="36" y="326" width="0" height="28"/></clipPath>
+
+    <clipPath id="cp_h_int" clipPathUnits="userSpaceOnUse"><rect id="r_h_int" x="24" y="374" width="0" height="34"/></clipPath>
+    <clipPath id="cp_b_int_1" clipPathUnits="userSpaceOnUse"><rect id="r_b_int_1" x="36" y="408" width="0" height="28"/></clipPath>
+    <clipPath id="cp_b_int_2" clipPathUnits="userSpaceOnUse"><rect id="r_b_int_2" x="36" y="432" width="0" height="28"/></clipPath>
+    <clipPath id="cp_b_int_3" clipPathUnits="userSpaceOnUse"><rect id="r_b_int_3" x="36" y="456" width="0" height="28"/></clipPath>
+
+    <clipPath id="cp_h_work" clipPathUnits="userSpaceOnUse"><rect id="r_h_work" x="24" y="504" width="0" height="34"/></clipPath>
+    <clipPath id="cp_b_work_1" clipPathUnits="userSpaceOnUse"><rect id="r_b_work_1" x="36" y="538" width="0" height="28"/></clipPath>
+    <clipPath id="cp_b_work_2" clipPathUnits="userSpaceOnUse"><rect id="r_b_work_2" x="36" y="562" width="0" height="28"/></clipPath>
+    <clipPath id="cp_b_work_3" clipPathUnits="userSpaceOnUse"><rect id="r_b_work_3" x="36" y="586" width="0" height="28"/></clipPath>
+  </defs>
+
+  <style>
+    .mono { font-family: "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+
+    :root{
+      --bg: #0d1117;
+      --text: #c9d1d9;
+      --cement: #8b949e;
+      --name: #F59E0B; /* name + active dot */
+      --MAX_W: 1400px;
+    }
+
+    .tag  { fill: var(--text); font-size: 16px; filter: url(#dualGlow); }
+    .h    { fill: var(--text); font-size: 20px; font-weight: 700; filter: url(#dualGlow); }
+    .b    { fill: var(--text); font-size: 15px; filter: url(#dualGlow); }
+
+    .name {
+      fill: var(--name);
+      font-size: 36px;
+      font-weight: 800;
+      filter: url(#dualGlow);
+      font-family: "Segoe Script","Brush Script MT","Lucida Handwriting","Comic Sans MS",cursive;
+      letter-spacing: 0.2px;
+    }
+
+    /* Timeline dot motion (UPDATED: no gaps) */
+    #dot { animation: k_dot 70s linear; }
+    @keyframes k_dot {
+      0%, 5.714% { transform: translateY(0px); }             /* Name */
+      5.714%, 14.285% { transform: translateY(32px); }       /* Tagline */
+      14.285%, 28.572% { transform: translateY(86px); }      /* What I Do */
+      28.572%, 42.859% { transform: translateY(216px); }     /* My Background */
+      42.859%, 57.146% { transform: translateY(346px); }     /* My Interests */
+      57.146%, 71.433% { transform: translateY(476px); }     /* How I Work */
+      71.433%, 100% { transform: translateY(476px); }        /* Hold final */
+    }
+
+    /* Completed dots appear behind (UPDATED: no gaps) */
+    #done1 { animation: k_done1 70s linear; }
+    #done2 { animation: k_done2 70s linear; }
+    #done3 { animation: k_done3 70s linear; }
+    #done4 { animation: k_done4 70s linear; }
+    #done5 { animation: k_done5 70s linear; }
+
+    @keyframes k_done1 { 0%, 5.714% { opacity:0 } 5.715%, 100% { opacity:1 } }
+    @keyframes k_done2 { 0%, 14.285% { opacity:0 } 14.286%, 100% { opacity:1 } }
+    @keyframes k_done3 { 0%, 28.572% { opacity:0 } 28.573%, 100% { opacity:1 } }
+    @keyframes k_done4 { 0%, 42.859% { opacity:0 } 42.860%, 100% { opacity:1 } }
+    @keyframes k_done5 { 0%, 57.146% { opacity:0 } 57.147%, 100% { opacity:1 } }
+
+    /* ONLY NAME keeps moving forever */
+    #nameFade { animation: nameFade 70s linear infinite; }
+    @keyframes nameFade {
+      0%, 92% { opacity: 1; }
+      95.2% { opacity: 0; }
+      100% { opacity: 0; }
+    }
+
+    #wipeBar { animation: wipeMove 10s ease-in-out infinite; }
+    @keyframes wipeMove {
+      0%   { transform: translateX(-320px); }
+      50%  { transform: translateX(220px); }
+      70%  { transform: translateX(220px); } /* hold */
+      100% { transform: translateX(1400px); }
+    }
+
+    /* Typing (same steps, UPDATED timings to remove gaps) */
+    #r_name     { animation: k_name 70s linear; animation-timing-function: steps(70, end); }
+    #r_tag      { animation: k_tag 70s linear;  animation-timing-function: steps(110, end); }
+
+    #r_h_what   { animation: k_h_what 70s linear; animation-timing-function: steps(90, end); }
+    #r_h_bg     { animation: k_h_bg 70s linear;   animation-timing-function: steps(90, end); }
+    #r_h_int    { animation: k_h_int 70s linear;  animation-timing-function: steps(90, end); }
+    #r_h_work   { animation: k_h_work 70s linear; animation-timing-function: steps(90, end); }
+
+    #r_b_what_1 { animation: k_b_what_1 70s linear; animation-timing-function: steps(110, end); }
+    #r_b_what_2 { animation: k_b_what_2 70s linear; animation-timing-function: steps(110, end); }
+    #r_b_what_3 { animation: k_b_what_3 70s linear; animation-timing-function: steps(110, end); }
+
+    #r_b_bg_1   { animation: k_b_bg_1 70s linear; animation-timing-function: steps(110, end); }
+    #r_b_bg_2   { animation: k_b_bg_2 70s linear; animation-timing-function: steps(110, end); }
+    #r_b_bg_3   { animation: k_b_bg_3 70s linear; animation-timing-function: steps(110, end); }
+
+    #r_b_int_1  { animation: k_b_int_1 70s linear; animation-timing-function: steps(110, end); }
+    #r_b_int_2  { animation: k_b_int_2 70s linear; animation-timing-function: steps(110, end); }
+    #r_b_int_3  { animation: k_b_int_3 70s linear; animation-timing-function: steps(110, end); }
+
+    #r_b_work_1 { animation: k_b_work_1 70s linear; animation-timing-function: steps(110, end); }
+    #r_b_work_2 { animation: k_b_work_2 70s linear; animation-timing-function: steps(110, end); }
+    #r_b_work_3 { animation: k_b_work_3 70s linear; animation-timing-function: steps(110, end); }
+
+    @keyframes k_name { 0%, 0% { width:0 } 5.714% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
+    @keyframes k_tag  { 0%, 5.714% { width:0 } 14.285% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
+
+    @keyframes k_h_what { 0%, 14.285% { width:0 } 17.714% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
+    @keyframes k_b_what_1 { 0%, 15.714% { width:0 } 20.000% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
+    @keyframes k_b_what_2 { 0%, 20.000% { width:0 } 24.286% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
+    @keyframes k_b_what_3 { 0%, 24.286% { width:0 } 28.572% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
+
+    @keyframes k_h_bg { 0%, 28.572% { width:0 } 32.001% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
+    @keyframes k_b_bg_1 { 0%, 30.001% { width:0 } 34.287% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
+    @keyframes k_b_bg_2 { 0%, 34.287% { width:0 } 38.573% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
+    @keyframes k_b_bg_3 { 0%, 38.573% { width:0 } 42.859% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
+
+    @keyframes k_h_int { 0%, 42.859% { width:0 } 46.288% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
+    @keyframes k_b_int_1 { 0%, 44.288% { width:0 } 48.574% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
+    @keyframes k_b_int_2 { 0%, 48.574% { width:0 } 52.860% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
+    @keyframes k_b_int_3 { 0%, 52.860% { width:0 } 57.146% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
+
+    @keyframes k_h_work { 0%, 57.146% { width:0 } 60.575% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
+    @keyframes k_b_work_1 { 0%, 58.575% { width:0 } 62.861% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
+    @keyframes k_b_work_2 { 0%, 62.861% { width:0 } 67.147% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
+    @keyframes k_b_work_3 { 0%, 67.147% { width:0 } 71.433% { width:var(--MAX_W) } 100% { width:var(--MAX_W) } }
+
+    /* ===== keep everything visible after reveal (freeze) ===== */
+    #dot,
+    #done1, #done2, #done3, #done4, #done5,
+    #r_name, #r_tag,
+    #r_h_what, #r_b_what_1, #r_b_what_2, #r_b_what_3,
+    #r_h_bg, #r_b_bg_1, #r_b_bg_2, #r_b_bg_3,
+    #r_h_int, #r_b_int_1, #r_b_int_2, #r_b_int_3,
+    #r_h_work, #r_b_work_1, #r_b_work_2, #r_b_work_3{
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+    }
+  </style>
+
+  <!-- Static GitHub dark background -->
+  <rect x="0" y="0" width="900" height="620" fill="#0d1117"/>
+  <rect x="0" y="0" width="900" height="620" filter="url(#grain)" opacity="0.16"/>
+  <rect x="0" y="0" width="900" height="620" fill="url(#scan)" opacity="0.05"/>
+
+  <!-- Timeline indicator: stick cement -->
+  <line x1="12" y1="20" x2="12" y2="610" stroke="#8b949e" opacity="0.65" stroke-width="2"/>
+
+  <!-- Completed dots (appear and stay in text color) -->
+  <circle id="done1" cx="12" cy="50"  r="5" fill="#c9d1d9" opacity="0"/>
+  <circle id="done2" cx="12" cy="82"  r="5" fill="#c9d1d9" opacity="0"/>
+  <circle id="done3" cx="12" cy="136" r="5" fill="#c9d1d9" opacity="0"/>
+  <circle id="done4" cx="12" cy="266" r="5" fill="#c9d1d9" opacity="0"/>
+  <circle id="done5" cx="12" cy="396" r="5" fill="#c9d1d9" opacity="0"/>
+
+  <!-- Active moving dot (stays name-color; final stays name-color at last section) -->
+  <circle id="dot" cx="12" cy="50" r="5" fill="#F59E0B" opacity="0.95"/>
+
+  <!-- NAME (fade + wipe only here) -->
+  <g id="nameFade" mask="url(#mask_name_wipe)">
+    <g clip-path="url(#cp_name)">
+      <text x="24" y="56" class="name">Hi, I’m Parveen Kashyap 👋</text>
+    </g>
+  </g>
+
+  <!-- TAGLINE -->
+  <g class="mono" clip-path="url(#cp_tag)">
+    <text x="24" y="88" class="tag">Passionate about AI/ML and building software that actually works.</text>
+  </g>
+
+  <!-- What I Do -->
+  <g class="mono" clip-path="url(#cp_h_what)"><text x="24" y="140" class="h">What I Do</text></g>
+  <g class="mono" clip-path="url(#cp_b_what_1)"><text x="36" y="168" class="b">• Create intelligent systems and predictive models</text></g>
+  <g class="mono" clip-path="url(#cp_b_what_2)"><text x="36" y="192" class="b">• Build automation tools and real-world applications</text></g>
+  <g class="mono" clip-path="url(#cp_b_what_3)"><text x="36" y="216" class="b">• Explore problems across software engineering</text></g>
+
+  <!-- My Background -->
+  <g class="mono" clip-path="url(#cp_h_bg)"><text x="24" y="270" class="h">My Background</text></g>
+  <g class="mono" clip-path="url(#cp_b_bg_1)"><text x="36" y="298" class="b">• Strong foundation in programming, algorithms, and data structures</text></g>
+  <g class="mono" clip-path="url(#cp_b_bg_2)"><text x="36" y="322" class="b">• Experience with databases, web tech, OS, and networking</text></g>
+  <g class="mono" clip-path="url(#cp_b_bg_3)"><text x="36" y="346" class="b">• Comfortable across end-to-end development</text></g>
+
+  <!-- My Interests -->
+  <g class="mono" clip-path="url(#cp_h_int)"><text x="24" y="400" class="h">My Interests</text></g>
+  <g class="mono" clip-path="url(#cp_b_int_1)"><text x="36" y="428" class="b">• Machine Learning, Deep Learning, NLP, and Computer Vision</text></g>
+  <g class="mono" clip-path="url(#cp_b_int_2)"><text x="36" y="452" class="b">• AI-driven automation and time series forecasting</text></g>
+  <g class="mono" clip-path="url(#cp_b_int_3)"><text x="36" y="476" class="b">• Scalable, clean, and maintainable software solutions</text></g>
+
+  <!-- How I Work -->
+  <g class="mono" clip-path="url(#cp_h_work)"><text x="24" y="530" class="h">How I Work</text></g>
+  <g class="mono" clip-path="url(#cp_b_work_1)"><text x="36" y="558" class="b">• Code that’s practical, readable, and impactful</text></g>
+  <g class="mono" clip-path="url(#cp_b_work_2)"><text x="36" y="582" class="b">• From idea to deployment, end-to-end</text></g>
+  <g class="mono" clip-path="url(#cp_b_work_3)"><text x="36" y="606" class="b">• Always learning, always experimenting</text></g>
+
+</svg>
